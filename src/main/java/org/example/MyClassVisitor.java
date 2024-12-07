@@ -45,18 +45,24 @@ public class MyClassVisitor extends ClassVisitor {
     }
 
     @Override
-    public void visitEnd() {
+    public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
         System.out.println("Структура класса:");
         System.out.println("u4             зарезервировано;");
-        System.out.println("u2             младшая_часть_номера_версии;");
-        System.out.println("u2             старшая_часть_номера_версии;");
-        System.out.println("u2             количество_константных_пулов;");
+        System.out.println("u2             младшая_часть_номера_версии: " + (version & 0xFFFF));
+        System.out.println("u2             старшая_часть_номера_версии: " + (version >> 16));
+        System.out.println("u2             количество_константных_пулов: [неизвестно]"); // Здесь нужно добавить логику для подсчета
         System.out.println("cp_info        константный_пул[количество_константных_пулов-1];");
-        System.out.println("u2             флаги_доступа;");
-        System.out.println("u2             текущий_класс;");
-        System.out.println("u2             предок;");
-        System.out.println("u2             количество_интерфейсов;");
-        System.out.println("u2             интерфейсы[количество_интерфейсов];");
+        System.out.println("u2             флаги_доступа: " + getAccessModifiers(access));
+        System.out.println("u2             текущий_класс: " + name);
+        System.out.println("u2             предок: " + superName);
+        System.out.println("u2             количество_интерфейсов: " + (interfaces != null ? interfaces.length : 0));
+        if (interfaces != null) {
+            System.out.print("u2             интерфейсы[количество_интерфейсов]: ");
+            for (String iface : interfaces) {
+                System.out.print(iface + " ");
+            }
+            System.out.println();
+        }
         System.out.println("u2             количество_полей: " + fieldCount);
         System.out.println("field_info     поля[количество_полей]:");
         for (String field : fieldsInfo) {
@@ -67,7 +73,7 @@ public class MyClassVisitor extends ClassVisitor {
         for (String method : methodsInfo) {
             System.out.println("                " + method);
         }
-        System.out.println("u2             количество_атрибутов;");
+        System.out.println("u2             количество_атрибутов: [неизвестно]"); // Здесь нужно добавить логику для подсчета
         System.out.println("attribute_info атрибут[количество_атрибутов];");
     }
 
