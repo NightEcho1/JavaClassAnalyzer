@@ -1,8 +1,6 @@
 package org.example;
 
-import org.example.MyClassVisitor;
 import org.objectweb.asm.ClassReader;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

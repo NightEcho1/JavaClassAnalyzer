@@ -26,6 +26,11 @@
       <artifactId>asm</artifactId>
       <version>9.5</version>
     </dependency>
+      <dependency>
+          <groupId>org.apache.bcel</groupId>
+          <artifactId>bcel</artifactId>
+          <version>6.5.0</version> <!-- Убедитесь, что используете последнюю версию -->
+      </dependency>
   </dependencies>
     <build>
         <plugins>
