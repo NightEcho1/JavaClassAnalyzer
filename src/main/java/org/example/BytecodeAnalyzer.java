@@ -14,7 +14,7 @@ import java.util.List;
 public class BytecodeAnalyzer {
 
     // Путь к директории, содержащей файлы .class для анализа
-    private static final String DIRECTORY_PATH = "C:/Users/NaughtyDragon/IdeaProjects/JavaClassAnalyzer/FilesToAnalyze";
+    private static final String DIRECTORY_PATH = "FilesToAnalyze";
 
     public static void main(String[] args) {
         // Создаем объект File для указанной директории
